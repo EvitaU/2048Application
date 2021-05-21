@@ -1,14 +1,19 @@
+import highscores.Score;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class Game extends JPanel implements KeyListener {
-
+    GamePanel gamePanel = new GamePanel();
     Board game = new Board();
     static Game newGame = new Game();
     static JFrame frame = new JFrame("2048");
     String gameBoard = game.toString();
+
+    //new Score highscore = scoreController.addScore.getScore;
 
 
     public static void setUpGUI() {
@@ -17,7 +22,7 @@ public class Game extends JPanel implements KeyListener {
         frame.setSize(600, 400);
         frame.setVisible(true);
         frame.setResizable(false);
-        frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
     }
 
 
@@ -81,6 +86,7 @@ public class Game extends JPanel implements KeyListener {
             }
         }
         if (this.game.gameOver()) {
+            gamePanel.restartGame();
             g2.setColor(Color.gray);
             g2.fillRect(140, 50, 250, 250);
 
@@ -115,6 +121,7 @@ public class Game extends JPanel implements KeyListener {
 
     public static void main(String[] args) {
         setUpGUI();
+
     }
 }
 
